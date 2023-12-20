@@ -8,27 +8,35 @@ import java.awt.event.ActionListener;
 
       public static void openRegistrationWindow2() {
 
-        JFrame thirdWindow = new JFrame("laptop management system");
-        thirdWindow.setSize(300, 400);
+          JFrame thirdWindow = new JFrame("laptop management system");
+          thirdWindow.setSize(300, 400);
 
-        JLabel inputCheck = new JLabel("PLEASE ENTER PC OR MAC SERIAL NUMBER");
-        thirdWindow.getContentPane().setLayout(null);
-        inputCheck.setBounds(10, 10, 300, 30);
-        thirdWindow.add(inputCheck);
+          JLabel inputCheck = new JLabel("PLEASE ENTER PC OR MAC SERIAL NUMBER");
+          thirdWindow.getContentPane().setLayout(null);
+          inputCheck.setBounds(10, 10, 300, 30);
+          thirdWindow.add(inputCheck);
+
+          JTextField serialField = new JTextField();
+          serialField.setBounds(50, 50, 130, 30);
+          thirdWindow.add(serialField);
 
 
-        JButton enterButton = new JButton("-->");
-        enterButton.setBounds(200, 50, 50, 30);
-        thirdWindow.add(enterButton);
+          JButton enterButton = new JButton("-->");
+          JButton exitButton = new JButton("Exit");
+          JButton backButton = new JButton("Back");
+
+          enterButton.setBounds(200, 50, 50, 30);
+          exitButton.setBounds(80, 300, 80, 30);
+          backButton.setBounds(180, 300, 80, 30);
+
+          thirdWindow.add(enterButton);
+          thirdWindow.add(exitButton);
+          thirdWindow.add(backButton);
 
 
-        JTextField serialField = new JTextField();
-        serialField.setBounds(50, 50, 130, 30);
-        thirdWindow.add(serialField);
 
-        JButton backButton = new JButton("Back");
-        backButton.setBounds(180, 300, 80, 30);
-        thirdWindow.add(backButton);
+
+
 
         backButton.addActionListener(new ActionListener() {
             @Override
@@ -38,21 +46,16 @@ import java.awt.event.ActionListener;
             }
             });
 
-
-                JButton exitButton = new JButton("Exit");
-                exitButton.setBounds(80, 300, 80, 30);
-                thirdWindow.add(exitButton);
-
-                exitButton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        System.exit(0);
-                    }
-                });
-
-
-                thirdWindow.setVisible(true);
-
+        exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
             }
+        });
+
+
+        thirdWindow.setVisible(true);
 
       }
+
+   }

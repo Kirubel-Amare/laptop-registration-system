@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class RegistrationWindow {
+public class RegistrationWindow extends LaptopManagement {
 
         public static void openRegistrationWindow() {
 
@@ -39,7 +39,7 @@ public class RegistrationWindow {
             JLabel department = new JLabel("Department");
             JLabel gender = new JLabel("Gender");
             JLabel laptop = new JLabel("Laptop");
-            JLabel address = new JLabel("Pc serial");
+            JLabel serialNumber = new JLabel("Pc serial");
             JLabel contact = new JLabel("Contact");
 
             // Set the position and size of each button
@@ -49,7 +49,7 @@ public class RegistrationWindow {
             department.setBounds(30, 120, 60, 30);
             gender.setBounds(30, 155, 60, 30);
             laptop.setBounds(30, 190, 60, 30);
-            address.setBounds(30, 225, 60, 30);
+            serialNumber.setBounds(30, 225, 60, 30);
             contact.setBounds(30, 260, 60, 30);
 
             // Add the buttons to the frame
@@ -60,31 +60,32 @@ public class RegistrationWindow {
             secondFrame.add(department);
             secondFrame.add(gender);
             secondFrame.add(laptop);
-            secondFrame.add(address);
+            secondFrame.add(serialNumber);
             secondFrame.add(contact);
 
             JTextField idField = new JTextField();
             JTextField nameField = new JTextField();
             JTextField departmentFiled = new JTextField();
-            JTextField filedAddress = new JTextField();
+            JTextField serialFiled = new JTextField();
             JTextField contactField = new JTextField();
 
             // Set the position and size of each button
             idField.setBounds(95, 50, 130, 30);
             nameField.setBounds(95, 85, 130, 30);
             departmentFiled.setBounds(95, 120, 130, 30);
-            filedAddress.setBounds(95, 225, 130, 30);
+            serialFiled.setBounds(95, 225, 130, 30);
             contactField.setBounds(95, 260, 130, 30);
 
             // Add the buttons to the frame
             secondFrame.add(idField);
             secondFrame.add(nameField);
             secondFrame.add(departmentFiled);
-            secondFrame.add(filedAddress);
+            secondFrame.add(serialFiled);
             secondFrame.add(contactField);
 
             JRadioButton male = new JRadioButton("Male");
             JRadioButton female = new JRadioButton("Female");
+
             JRadioButton window = new JRadioButton("Window");
             JRadioButton linxu = new JRadioButton("Linxu");
             JRadioButton mac = new JRadioButton("Mac");
@@ -126,12 +127,13 @@ public class RegistrationWindow {
             JTable table=new JTable(model);
             table.getTableHeader().setReorderingAllowed(false);
 
-            model.addColumn("S.No");
             model.addColumn("ID");
-            model.addColumn("Name");
+            model.addColumn("NAME");
+            model.addColumn("DEPARTMENT");
             model.addColumn("Gender");
-            model.addColumn("Pc serial");
-            model.addColumn("Contact");
+            model.addColumn("LAPTOP");
+            model.addColumn("PC SERIAL");
+            model.addColumn("CONTACT");
 
             // Enable Scrolling on table
 
@@ -141,8 +143,31 @@ public class RegistrationWindow {
 
             // Make the second window visible
             scrollPane.setVisible(true);
-
             secondFrame.setVisible(true);
+
+            registerButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String id = idField.getText();
+                    String name = nameField.getText();
+                    String department=departmentFiled.getText();
+                    String gender = male.isSelected() ? "Male" : "Female";
+                    String laptop=window.isSelected()? "window":"linux";
+                    String serial=serialFiled.getText();
+                    String contact = contactField.getText();
+
+                    // Add the data to the table model
+                    DefaultTableModel model = (DefaultTableModel) table.getModel();
+                    model.addRow(new Object[]{id, name,department, gender,laptop,serial, contact});
+
+                    // Clear the input fields
+                    idField.setText("");
+                    nameField.setText("");
+                    departmentFiled.setText("");
+                    serialFiled.setText("");
+                    contactField.setText("");
+                }
+            });
 
             backButton.addActionListener(new ActionListener() {
                 @Override

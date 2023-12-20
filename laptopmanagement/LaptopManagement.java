@@ -15,6 +15,8 @@ public class LaptopManagement {
 
 
         public static void openRegistrationWindow3() {
+
+
             JFrame firstFrame = new JFrame("HU UNIVERSITY");
             firstFrame.setSize(300, 400);
 
@@ -63,9 +65,11 @@ public class LaptopManagement {
                 }
             });
 
+
             exitButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+
                     System.exit(0);
                 }
             });
@@ -74,6 +78,6 @@ public class LaptopManagement {
         }
 
 
-    }
+}
 
 
