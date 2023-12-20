@@ -87,21 +87,21 @@ public class RegistrationWindow{
             JRadioButton female = new JRadioButton("Female");
 
             JRadioButton window = new JRadioButton("Window");
-            JRadioButton linxu = new JRadioButton("Linxu");
             JRadioButton mac = new JRadioButton("Mac");
+           
 
             // Set the position and size of each button
             male.setBounds(95, 155, 60, 30);
             female.setBounds(155, 155, 70, 30);
+                
             window.setBounds(95, 190, 60, 30);
-            linxu.setBounds(155, 190, 70, 30);
-            mac.setBounds(225, 190, 70, 30);
+            mac.setBounds(155, 190, 70, 30);
+            
 
             // Add the buttons to the frame
             secondFrame.add(male);
             secondFrame.add(female);
             secondFrame.add(window);
-            secondFrame.add(linxu);
             secondFrame.add(mac);
 
             ButtonGroup bg = new ButtonGroup();
@@ -110,7 +110,6 @@ public class RegistrationWindow{
 
             ButtonGroup bg1 = new ButtonGroup();
             bg1.add(window);
-            bg1.add(linxu);
             bg1.add(mac);
 
 
