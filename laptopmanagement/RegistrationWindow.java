@@ -148,24 +148,97 @@ public class RegistrationWindow extends LaptopManagement {
             registerButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    String id = idField.getText();
-                    String name = nameField.getText();
-                    String department=departmentFiled.getText();
-                    String gender = male.isSelected() ? "Male" : "Female";
-                    String laptop=window.isSelected()? "window":"linux";
-                    String serial=serialFiled.getText();
-                    String contact = contactField.getText();
 
-                    // Add the data to the table model
-                    DefaultTableModel model = (DefaultTableModel) table.getModel();
-                    model.addRow(new Object[]{id, name,department, gender,laptop,serial, contact});
+                try {
+                    // perform id_number field validation
+                    String idno = idField.getText();
+                    String id_matches = "[0-9/]{7}";
 
-                    // Clear the input fields
+                    if(!(idno.matches(id_matches))){
+                        idField.setText("");
+                        idField.setForeground(Color.RED);
+                        idField.setText("invalid id_number");  
+                    }
+
+                    // perform name field validation
+                    String inputName = nameField.getText();
+                    String name_matches = "[a-zA-Z]+([ -][a-zA-Z]+)*";
+
+                    if (!(inputName.matches(name_matches))) {
+                        idField.setText("");
+                        nameField.setForeground(Color.RED);
+                        nameField.setText("invalid name");   
+                    }
+                    
+                    // perform department field validation
+                    String departmentInput = departmentFiled.getText();
+                    String departmen_matches  = "[A-Za-z ]+";
+
+                    if (!(departmentInput.matches(departmen_matches))) {
+                        departmentFiled.setText("");
+                        departmentFiled.setForeground(Color.RED);
+                        departmentFiled.setText("invalid department name");   
+                    }
+
+                    //perform pc serial Number field validation
+                    String pcSerialNumber =serialFiled.getText();
+                    String pcSerialNumber_matches = "[a-zA-Z0-9]{6,12}";
+
+                    if (!(pcSerialNumber.matches(pcSerialNumber_matches))) {
+                            serialFiled.setText("");
+                            serialFiled.setForeground(Color.RED);
+                            serialFiled.setText("invalid pc-serailNumber");                  
+                    }
+
+                      // perform contact Number field validation
+                    String contactNumber = contactField.getText();
+                    String contact_matches = "^09[0-9]{8}";
+
+                    if (!(contactNumber.matches(contact_matches))) {
+                            contactField.setText("");
+                            contactField.setForeground(Color.RED);
+                            contactField.setText("invalid contact-number"); 
+                    }
+
+             // The code block is checking if any of the input fields (name, department, pc serial number, or
+            // contact number) do not match their respective regular expression patterns. If any of the fields do
+            // not match the pattern, it clears all the input fields (id, name, department, pc serial number, and
+            // contact number).
+
+                if (!(inputName.matches(name_matches)) || (!(inputName.matches(name_matches))) 
+                || !(departmentInput.matches(departmen_matches)) || !(pcSerialNumber.matches(pcSerialNumber_matches))
+                ||!(contactNumber.matches(contact_matches)) ) {
+
                     idField.setText("");
                     nameField.setText("");
                     departmentFiled.setText("");
                     serialFiled.setText("");
                     contactField.setText("");
+                    
+                }
+                    
+                } catch (Exception error) {
+                    error.getMessage();
+                }
+                   
+                String id = idField.getText();
+                String name = nameField.getText();
+                String department=departmentFiled.getText();
+                String gender = male.isSelected() ? "Male" : "Female";
+                String laptop=window.isSelected()? "window":"linux";
+                String serial=serialFiled.getText();
+                String contact = contactField.getText();
+
+                // Add the data to the table model
+                DefaultTableModel model = (DefaultTableModel) table.getModel();
+                model.addRow(new Object[]{id, name,department, gender,laptop,serial, contact});
+
+                // Clear the input fields
+                idField.setText("");
+                nameField.setText("");
+                departmentFiled.setText("");
+                serialFiled.setText("");
+                contactField.setText("");
                 }
             });
 
