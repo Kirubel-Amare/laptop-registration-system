@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class RegistrationWindow extends LaptopManagement {
+public class RegistrationWindow{
 
         public static void openRegistrationWindow() {
 
@@ -173,7 +173,7 @@ public class RegistrationWindow extends LaptopManagement {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     secondFrame.setVisible(false);
-                    LaptopManagement.openRegistrationWindow3();
+                    LaptopManagement.openRegistrationFristWindow();
                 }
             });
 
@@ -183,6 +183,6 @@ public class RegistrationWindow extends LaptopManagement {
                     System.exit(0);
                 }
             });
-        }
+    }
 }
 

@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
    public class CheckWindow {
 
-      public static void openRegistrationWindow2() {
+      public static void openRegistrationCheckWindow() {
 
           JFrame thirdWindow = new JFrame("laptop management system");
           thirdWindow.setSize(300, 400);
@@ -20,7 +20,6 @@ import java.awt.event.ActionListener;
           serialField.setBounds(50, 50, 130, 30);
           thirdWindow.add(serialField);
 
-
           JButton enterButton = new JButton("-->");
           JButton exitButton = new JButton("Exit");
           JButton backButton = new JButton("Back");
@@ -33,16 +32,11 @@ import java.awt.event.ActionListener;
           thirdWindow.add(exitButton);
           thirdWindow.add(backButton);
 
-
-
-
-
-
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 thirdWindow.setVisible(false);
-                LaptopManagement.openRegistrationWindow3();
+                LaptopManagement.openRegistrationFristWindow();
             }
             });
 
@@ -52,7 +46,6 @@ import java.awt.event.ActionListener;
                 System.exit(0);
             }
         });
-
 
         thirdWindow.setVisible(true);
 

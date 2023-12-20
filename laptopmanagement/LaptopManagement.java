@@ -8,14 +8,10 @@ public class LaptopManagement {
 
         public static void main(String[] args) {
 
-
-            openRegistrationWindow3();
+            openRegistrationFristWindow();
         }
 
-
-
-        public static void openRegistrationWindow3() {
-
+        public static void openRegistrationFristWindow() {
 
             JFrame firstFrame = new JFrame("HU UNIVERSITY");
             firstFrame.setSize(300, 400);
@@ -60,11 +56,10 @@ public class LaptopManagement {
             checkButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    CheckWindow.openRegistrationWindow2();
+                    CheckWindow.openRegistrationCheckWindow();
                     firstFrame.dispose();
                 }
             });
-
 
             exitButton.addActionListener(new ActionListener() {
                 @Override
