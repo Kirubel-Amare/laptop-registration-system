@@ -10,7 +10,6 @@ public class LaptopManagement {
 
             openRegistrationFristWindow();
         }
-
         public static void openRegistrationFristWindow() {
 
             JFrame firstFrame = new JFrame("HU UNIVERSITY");
@@ -68,7 +67,6 @@ public class LaptopManagement {
                     System.exit(0);
                 }
             });
-
             firstFrame.setVisible(true);
         }
 

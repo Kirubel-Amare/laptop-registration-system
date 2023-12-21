@@ -153,10 +153,10 @@ public class RegistrationWindow{
                     String idno = idField.getText();
                     String id_matches = "[0-9/]{7}";
 
-                    if(!(idno.matches(id_matches))){
-                        idField.setText("");
+                    if(!idno.matches(id_matches)){
                         idField.setForeground(Color.RED);
-                        idField.setText("invalid id_number");  
+                        JOptionPane.showMessageDialog(null, "Please enter a idno (six digit and backslash only).", "Invalid id_No", JOptionPane.ERROR_MESSAGE);
+                        return;  
                     }
 
                     // perform name field validation
@@ -170,51 +170,35 @@ public class RegistrationWindow{
                     }
                     
                     // perform department field validation
-                    String departmentInput = departmentFiled.getText();
-                    String departmen_matches  = "[A-Za-z ]+";
+                    String inputName_ = nameField.getText();
+                    String namePattern = "^[a-zA-Z\\s]+$"; 
 
-                    if (!(departmentInput.matches(departmen_matches))) {
-                        departmentFiled.setText("");
-                        departmentFiled.setForeground(Color.RED);
-                        departmentFiled.setText("invalid department name");   
+                    if (!inputName_.matches(namePattern)) {
+                        nameField.setForeground(Color.RED);
+                        JOptionPane.showMessageDialog(null, "Please enter a valid name (letters and spaces only).", "Invalid Name", JOptionPane.ERROR_MESSAGE);
+                        return;
                     }
 
                     //perform pc serial Number field validation
-                    String pcSerialNumber =serialFiled.getText();
-                    String pcSerialNumber_matches = "[a-zA-Z0-9]{6,12}";
+                    // perform department field validation
+                    String departmentInput = departmentFiled.getText();
+                    String departmen_matches  = "^[a-zA-Z\\s]+$";
 
-                    if (!(pcSerialNumber.matches(pcSerialNumber_matches))) {
-                            serialFiled.setText("");
-                            serialFiled.setForeground(Color.RED);
-                            serialFiled.setText("invalid pc-serailNumber");                  
+                    if (!departmentInput.matches(departmen_matches)) {
+                        departmentFiled.setForeground(Color.RED);
+                        JOptionPane.showMessageDialog(null, "Please enter a  correct department name (letters and spaces only).", "Invalid department name", JOptionPane.ERROR_MESSAGE);
+                        return; 
                     }
 
                       // perform contact Number field validation
-                    String contactNumber = contactField.getText();
-                    String contact_matches = "^09[0-9]{8}";
-
-                    if (!(contactNumber.matches(contact_matches))) {
-                            contactField.setText("");
-                            contactField.setForeground(Color.RED);
-                            contactField.setText("invalid contact-number"); 
-                    }
-
-             // The code block is checking if any of the input fields (name, department, pc serial number, or
-            // contact number) do not match their respective regular expression patterns. If any of the fields do
-            // not match the pattern, it clears all the input fields (id, name, department, pc serial number, and
-            // contact number).
-
-                if (!(inputName.matches(name_matches)) || (!(inputName.matches(name_matches))) 
-                || !(departmentInput.matches(departmen_matches)) || !(pcSerialNumber.matches(pcSerialNumber_matches))
-                ||!(contactNumber.matches(contact_matches)) ) {
-
-                    idField.setText("");
-                    nameField.setText("");
-                    departmentFiled.setText("");
-                    serialFiled.setText("");
-                    contactField.setText("");
-                    
-                }
+                      String contactNumber = contactField.getText();
+                      String contact_matches = "^09[0-9]{8}";
+  
+                      if (!contactNumber.matches(contact_matches)) {
+                              contactField.setForeground(Color.RED);
+                              JOptionPane.showMessageDialog(null, "Please enter a  correct your contact Number (start with 09 and can't exceed 10 digit).", "Invalid contact Number", JOptionPane.ERROR_MESSAGE);
+                              return;
+                      }  
                     
                 } catch (Exception error) {
                     error.getMessage();
@@ -238,6 +222,8 @@ public class RegistrationWindow{
                 departmentFiled.setText("");
                 serialFiled.setText("");
                 contactField.setText("");
+                bg.clearSelection();
+                bg1.clearSelection();
                 }
             });
 
@@ -253,6 +239,23 @@ public class RegistrationWindow{
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     System.exit(0);
+                }
+            });
+
+             // The code `refresh.addActionListener(new ActionListener() { ... })` adds an action
+            // listener to the `refresh` button. When the button is clicked, the code inside the
+            // `actionPerformed` method will be executed. 
+
+            refresh.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                   idField.setText("");
+                   nameField.setText("");
+                   serialFiled.setText("");
+                   departmentFiled.setText("");
+                   contactField.setText("");
+                   bg.clearSelection();
+                   bg1.clearSelection();
                 }
             });
     }
