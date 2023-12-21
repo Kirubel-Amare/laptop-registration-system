@@ -12,11 +12,11 @@ public class LaptopManagement {
         }
         public static void openRegistrationFristWindow() {
 
-            JFrame firstFrame = new JFrame("HU UNIVERSITY");
+            JFrame firstFrame = new JFrame("HARAMAYA UNIVERSITY");
             firstFrame.setSize(300, 400);
 
             JLabel titleLabel = new JLabel(" HARAMAYA UNIVERSITY ");
-            JLabel titleLabel2 = new JLabel(" STUDENT LAPTOP REGISTRATION");
+            JLabel titleLabel2 = new JLabel(" STUDENT PC CONTROL SYSTEM");
             JLabel titleLabel3 = new JLabel("Let's put the safety and security ");
             JLabel titleLabel4 = new JLabel("of the haramaya student first !!");
 

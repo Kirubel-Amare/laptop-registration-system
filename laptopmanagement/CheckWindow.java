@@ -17,14 +17,14 @@ import java.awt.event.ActionListener;
           thirdWindow.add(inputCheck);
 
           JTextField serialField = new JTextField();
-          serialField.setBounds(50, 50, 130, 30);
+          serialField.setBounds(50, 250, 100, 30);
           thirdWindow.add(serialField);
 
-          JButton enterButton = new JButton("-->");
+          JButton enterButton = new JButton("Search");
           JButton exitButton = new JButton("Exit");
           JButton backButton = new JButton("Back");
 
-          enterButton.setBounds(200, 50, 50, 30);
+          enterButton.setBounds(150, 250, 80, 30);
           exitButton.setBounds(80, 300, 80, 30);
           backButton.setBounds(180, 300, 80, 30);
 
