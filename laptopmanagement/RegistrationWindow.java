@@ -170,17 +170,6 @@ public class RegistrationWindow{
                     }
                     
                     // perform department field validation
-                    String inputName_ = nameField.getText();
-                    String namePattern = "^[a-zA-Z\\s]+$"; 
-
-                    if (!inputName_.matches(namePattern)) {
-                        nameField.setForeground(Color.RED);
-                        JOptionPane.showMessageDialog(null, "Please enter a valid name (letters and spaces only).", "Invalid Name", JOptionPane.ERROR_MESSAGE);
-                        return;
-                    }
-
-                    //perform pc serial Number field validation
-                    // perform department field validation
                     String departmentInput = departmentFiled.getText();
                     String departmen_matches  = "^[a-zA-Z\\s]+$";
 
@@ -188,6 +177,16 @@ public class RegistrationWindow{
                         departmentFiled.setForeground(Color.RED);
                         JOptionPane.showMessageDialog(null, "Please enter a  correct department name (letters and spaces only).", "Invalid department name", JOptionPane.ERROR_MESSAGE);
                         return; 
+                    }
+
+                    //perform pc serial Number field validation
+                    String pcSerialNumber =serialFiled.getText();
+                    String pcSerialNumber_matches = "[a-zA-Z0-9]{6,12}";
+
+                    if (!pcSerialNumber.matches(pcSerialNumber_matches)) {
+                            serialFiled.setForeground(Color.RED);
+                            JOptionPane.showMessageDialog(null, "Please enter a  correct your pc serail Number (letters and number only).", "Invalid pc serial number", JOptionPane.ERROR_MESSAGE);
+                            return;                 
                     }
 
                       // perform contact Number field validation
@@ -230,7 +229,7 @@ public class RegistrationWindow{
             backButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    secondFrame.setVisible(false);
+                    secondFrame.setVisible(true);
                     LaptopManagement.openRegistrationFristWindow();
                 }
             });
