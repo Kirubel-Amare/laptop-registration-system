@@ -48,7 +48,7 @@ public class LaptopManagement {
             registerButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                    RegistrationWindow.openRegistrationWindow();
-                    //firstFrame.dispose();
+                    firstFrame.dispose();
                 }
             });
 
@@ -56,7 +56,7 @@ public class LaptopManagement {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     CheckWindow.openRegistrationCheckWindow();
-                    //firstFrame.dispose();
+                    firstFrame.dispose();
                 }
             });
 

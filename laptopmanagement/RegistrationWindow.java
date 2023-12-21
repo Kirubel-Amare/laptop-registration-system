@@ -144,87 +144,49 @@ public class RegistrationWindow{
             scrollPane.setVisible(true);
             secondFrame.setVisible(true);
 
+            
             registerButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-
-                try {
-                    // perform id_number field validation
+                try{
                     String idno = idField.getText();
-                    String id_matches = "[0-9/]{7}";
-
-                    if(!idno.matches(id_matches)){
-                        idField.setForeground(Color.RED);
-                        JOptionPane.showMessageDialog(null, "Please enter a idno (six digit and backslash only).", "Invalid id_No", JOptionPane.ERROR_MESSAGE);
-                        return;  
-                    }
-
-                    // perform name field validation
                     String inputName = nameField.getText();
-                    String name_matches = "[a-zA-Z]+([ -][a-zA-Z]+)*";
-
-                    if (!(inputName.matches(name_matches))) {
-                        idField.setText("");
-                        nameField.setForeground(Color.RED);
-                        nameField.setText("invalid name");   
-                    }
-                    
-                    // perform department field validation
                     String departmentInput = departmentFiled.getText();
-                    String departmen_matches  = "^[a-zA-Z\\s]+$";
-
-                    if (!departmentInput.matches(departmen_matches)) {
-                        departmentFiled.setForeground(Color.RED);
-                        JOptionPane.showMessageDialog(null, "Please enter a  correct department name (letters and spaces only).", "Invalid department name", JOptionPane.ERROR_MESSAGE);
-                        return; 
-                    }
-
-                    //perform pc serial Number field validation
                     String pcSerialNumber =serialFiled.getText();
-                    String pcSerialNumber_matches = "[a-zA-Z0-9]{6,12}";
-
-                    if (!pcSerialNumber.matches(pcSerialNumber_matches)) {
-                            serialFiled.setForeground(Color.RED);
-                            JOptionPane.showMessageDialog(null, "Please enter a  correct your pc serail Number (letters and number only).", "Invalid pc serial number", JOptionPane.ERROR_MESSAGE);
-                            return;                 
-                    }
-
-                      // perform contact Number field validation
-                      String contactNumber = contactField.getText();
-                      String contact_matches = "^09[0-9]{8}";
-  
-                      if (!contactNumber.matches(contact_matches)) {
-                              contactField.setForeground(Color.RED);
-                              JOptionPane.showMessageDialog(null, "Please enter a  correct your contact Number (start with 09 and can't exceed 10 digit).", "Invalid contact Number", JOptionPane.ERROR_MESSAGE);
-                              return;
-                      }  
+                    String contactNumber = contactField.getText();
+                    isvalidateId(idno);
+                    isVAlidName(inputName);
+                    isValidDepartment(departmentInput);
+                    isValidSerialNumber(pcSerialNumber);
+                    isvalidContactNumber(contactNumber);
                     
-                } catch (Exception error) {
+                }catch(Exception error){
                     error.getMessage();
                 }
                    
-                String id = idField.getText();
-                String name = nameField.getText();
-                String department=departmentFiled.getText();
-                String gender = male.isSelected() ? "Male" : "Female";
-                String laptop=window.isSelected()? "window":"linux";
-                String serial=serialFiled.getText();
-                String contact = contactField.getText();
+                        String id = idField.getText();
+                        String name = nameField.getText();
+                        String department=departmentFiled.getText();
+                        String gender = male.isSelected() ? "Male" : "Female";
+                        String laptop=window.isSelected()? "window":"linux";
+                        String serial=serialFiled.getText();
+                        String contact = contactField.getText();
 
-                // Add the data to the table model
-                DefaultTableModel model = (DefaultTableModel) table.getModel();
-                model.addRow(new Object[]{id, name,department, gender,laptop,serial, contact});
+                        // Add the data to the table model
+                        DefaultTableModel model = (DefaultTableModel) table.getModel();
+                        model.addRow(new Object[]{id, name,department, gender,laptop,serial, contact});
 
-                // Clear the input fields
-                idField.setText("");
-                nameField.setText("");
-                departmentFiled.setText("");
-                serialFiled.setText("");
-                contactField.setText("");
-                bg.clearSelection();
-                bg1.clearSelection();
-                }
-            });
+                        // Clear the input fields
+                        idField.setText("");
+                        nameField.setText("");
+                        departmentFiled.setText("");
+                        serialFiled.setText("");
+                        contactField.setText("");
+                        bg.clearSelection();
+                        bg1.clearSelection();
+                      
+            }});
+
 
             backButton.addActionListener(new ActionListener() {
                 @Override
@@ -258,5 +220,127 @@ public class RegistrationWindow{
                 }
             });
     }
+
+   /**
+    * The function "validateId_input" checks if the input idno is valid by matching it against a
+    * regular expression pattern.
+    * 
+    * @param idno The idno parameter is a string representing an identification number.
+    * @return The method is returning a boolean value, which indicates whether the idno input is valid
+    * or not.
+    */
+    private static boolean isvalidateId(String idno){
+        boolean isValidId = true;
+        try {
+                String id_matches = "[0-9/]{7}";
+
+                if(!idno.matches(id_matches)){
+                    JOptionPane.showMessageDialog(null, "Please enter a idno (six digit and backslash only).", "Invalid id_No", JOptionPane.ERROR_MESSAGE);
+                    
+                    isValidId = false;
+                }  
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return isValidId;
+    }
+
+    /**
+     * The function isVAlidName checks if a given input name is valid, meaning it only contains letters
+     * and spaces.
+     * 
+     * @param inputname The input name that needs to be validated.
+     * @return The method is returning a boolean value, which indicates whether the input name is valid
+     * or not.
+     */
+    private static boolean isVAlidName(String inputname){
+        boolean isValidName = true;
+        try {
+            
+            String name_matches = "[a-zA-Z]+([ -][a-zA-Z]+)*";
+
+            if (!inputname.matches(name_matches)) {
+                JOptionPane.showMessageDialog(null, "Please enter a  correct name (letter s and spaces only).", "Invalid name", JOptionPane.ERROR_MESSAGE);  
+                isValidName = false;
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return isValidName;
+    }
+
+    /**
+     * The function checks if a given department name is valid, which means it only contains letters
+     * and spaces.
+     * 
+     * @param department The parameter "department" is a string that represents the name of a
+     * department.
+     * @return The method is returning a boolean value, which indicates whether the department name is
+     * valid or not.
+     */
+    private static  boolean isValidDepartment(String department){
+        boolean isvalidDep = true;
+
+        try {
+            String departmen_matches  = "^[a-zA-Z\\s]+$";
+
+            if (!department.matches(departmen_matches)) {
+                JOptionPane.showMessageDialog(null, "Please enter a  correct department name (letters and spaces only).", "Invalid department name", JOptionPane.ERROR_MESSAGE);
+                isvalidDep = false;
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return isvalidDep;
+    }
+
+    /**
+     * The function checks if a given serial number is valid by matching it against a regular
+     * expression pattern.
+     * 
+     * @param serialNumber The serial number of a PC.
+     * @return The method is returning a boolean value, which indicates whether the given serial number
+     * is valid or not.
+     */
+    private static boolean isValidSerialNumber(String serialNumber) {
+        boolean isValidSerial = false;
+        try {
+            String pcSerialNumber_matches = "[a-zA-Z0-9]{6,12}";
+
+            if (!serialNumber.matches(pcSerialNumber_matches)) {
+                    JOptionPane.showMessageDialog(null, "Please enter a  correct your pc serail Number (letters and number only).", "Invalid pc serial number", JOptionPane.ERROR_MESSAGE);
+                    isValidSerial = false;                 
+            }
+            
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return isValidSerial;
+    }
+
+    /**
+     * The function isvalidContactNumber checks if a given contact number is valid by matching it
+     * against a regular expression pattern.
+     * 
+     * @param contactNumber The contact number that needs to be validated.
+     * @return The method is returning a boolean value, which indicates whether the contact number is
+     * valid or not.
+     */
+    private static boolean  isvalidContactNumber(String contactNumber){
+        boolean isValidContact = true;
+
+        try {
+            String contact_matches = "^09[0-9]{8}";
+
+            if (!contactNumber.matches(contact_matches)) {
+                    JOptionPane.showMessageDialog(null, "Please enter a  correct your contact Number (start with 09 and can't exceed 10 digit).", "Invalid contact Number", JOptionPane.ERROR_MESSAGE);
+                    isValidContact = false;
+            }  
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return isValidContact;
+    }
+
 }
 
