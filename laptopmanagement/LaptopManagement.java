@@ -6,69 +6,78 @@ import java.awt.event.ActionListener;
 
 public class LaptopManagement {
 
-        public static void main(String[] args) {
+    protected JButton registerButton = null;
+    protected JButton exitButton = null;
+    protected JButton checkButton = null;
 
-            openRegistrationFristWindow();
-        }
-        public static void openRegistrationFristWindow() {
+    // Laptop Managment Constructor 
+    public LaptopManagement(){
+        registerButton = new JButton("New Register");
+        exitButton = new JButton("Exit");
+        checkButton = new JButton("Check");
+    }
 
-            JFrame firstFrame = new JFrame("HARAMAYA UNIVERSITY");
-            firstFrame.setSize(300, 400);
+    public static void main(String[] args) {
+        openRegistrationFristWindow();
+    }
 
-            JLabel titleLabel = new JLabel(" HARAMAYA UNIVERSITY ");
-            JLabel titleLabel2 = new JLabel(" STUDENT PC CONTROL SYSTEM");
-            JLabel titleLabel3 = new JLabel("Let's put the safety and security ");
-            JLabel titleLabel4 = new JLabel("of the haramaya student first !!");
+    public static void openRegistrationFristWindow() {
 
-            JButton registerButton = new JButton(" NEW Register");
-            JButton checkButton = new JButton("Check");
-            JButton exitButton = new JButton("Exit");
+        // object creation for LaptopManagment
+        LaptopManagement lmanagement = new LaptopManagement();
 
-            // Set the position and size of each button
-            titleLabel.setBounds(60, 10, 200, 30);
-            titleLabel2.setBounds(30, 30, 300, 30);
-            titleLabel3.setBounds(40, 280, 300, 30);
-            titleLabel4.setBounds(50, 300, 300, 30);
+        JFrame firstFrame = new JFrame("HARAMAYA UNIVERSITY");
+        firstFrame.setSize(300, 400);
 
-            registerButton.setBounds(10, 150, 120, 25);
-            checkButton.setBounds(150, 150, 120, 25);
-            exitButton.setBounds(70, 210, 130, 25);
+        JLabel titleLabel = new JLabel(" HARAMAYA UNIVERSITY ");
+        JLabel titleLabel2 = new JLabel(" STUDENT PC CONTROL SYSTEM");
+        JLabel titleLabel3 = new JLabel("Let's put the safety and security ");
+        JLabel titleLabel4 = new JLabel("of the haramaya student first !!");
 
-            // Add the buttons to the frame
-            firstFrame.getContentPane().setLayout(null);
-            firstFrame.add(titleLabel);
-            firstFrame.add(titleLabel2);
-            firstFrame.add(titleLabel3);
-            firstFrame.add(titleLabel4);
+        // Set the position and size of each button
+        titleLabel.setBounds(60, 10, 200, 30);
+        titleLabel2.setBounds(30, 30, 300, 30);
+        titleLabel3.setBounds(40, 280, 300, 30);
+        titleLabel4.setBounds(50, 300, 300, 30);
+        
+        lmanagement.registerButton.setBounds(10,150,120,25);
+        lmanagement.checkButton.setBounds(150, 150, 120, 25);
+        lmanagement.exitButton.setBounds(70, 210, 130, 25);
 
-            firstFrame.add(registerButton);
-            firstFrame.add(checkButton);
-            firstFrame.add(exitButton);
+        // Add the buttons to the frame
+        firstFrame.getContentPane().setLayout(null);
+        firstFrame.add(titleLabel);
+        firstFrame.add(titleLabel2);
+        firstFrame.add(titleLabel3);
+        firstFrame.add(titleLabel4);
 
-            registerButton.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                   RegistrationWindow.openRegistrationWindow();
-                    firstFrame.dispose();
-                }
-            });
+        firstFrame.add(lmanagement.registerButton);
+        firstFrame.add(lmanagement.checkButton);
+        firstFrame.add(lmanagement.exitButton);
 
-            checkButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    CheckWindow.openRegistrationCheckWindow();
-                    firstFrame.dispose();
-                }
-            });
+        lmanagement.registerButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                RegistrationWindow.openRegistrationWindow();
+                firstFrame.dispose();
+            }
+        });
 
-            exitButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
+        lmanagement.checkButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CheckWindow.openRegistrationCheckWindow();
+                firstFrame.dispose();
+            }
+        });
 
-                    System.exit(0);
-                }
-            });
-            firstFrame.setVisible(true);
-        }
+        lmanagement.exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        firstFrame.setVisible(true);
+    }
 
 
 }

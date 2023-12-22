@@ -4,51 +4,60 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-   public class CheckWindow {
+   public class CheckWindow extends RegistrationWindow{
 
-      public static void openRegistrationCheckWindow() {
+    // checkWindow Buttons
+    protected JButton searchButton = null;
 
-          JFrame thirdWindow = new JFrame("laptop management system");
-          thirdWindow.setSize(300, 400);
+    // constructor
+    public CheckWindow(){
+        searchButton= new JButton("Search");
+    }
 
-          JLabel inputCheck = new JLabel("PLEASE ENTER PC OR MAC SERIAL NUMBER");
-          thirdWindow.getContentPane().setLayout(null);
-          inputCheck.setBounds(10, 10, 300, 30);
-          thirdWindow.add(inputCheck);
+    public static void openRegistrationCheckWindow() {
 
-          JTextField serialField = new JTextField();
-          serialField.setBounds(50, 250, 100, 30);
-          thirdWindow.add(serialField);
+    // object creation
+    RegistrationWindow registrationWindow = new CheckWindow();
+    CheckWindow checkWindow = new CheckWindow();
 
-          JButton enterButton = new JButton("Search");
-          JButton exitButton = new JButton("Exit");
-          JButton backButton = new JButton("Back");
 
-          enterButton.setBounds(150, 250, 80, 30);
-          exitButton.setBounds(80, 300, 80, 30);
-          backButton.setBounds(180, 300, 80, 30);
+        JFrame thirdWindow = new JFrame("laptop management system");
+        thirdWindow.setSize(300, 400);
 
-          thirdWindow.add(enterButton);
-          thirdWindow.add(exitButton);
-          thirdWindow.add(backButton);
+        JLabel inputCheck = new JLabel("PLEASE ENTER PC OR MAC SERIAL NUMBER");
+        thirdWindow.getContentPane().setLayout(null);
+        inputCheck.setBounds(10, 10, 300, 30);
+        thirdWindow.add(inputCheck);
 
-        backButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                thirdWindow.setVisible(false);
-                LaptopManagement.openRegistrationFristWindow();
-            }
-            });
+        JTextField serialField = new JTextField();
+        serialField.setBounds(50, 250, 100, 30);
+        thirdWindow.add(serialField);
 
-        exitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
+        checkWindow.searchButton.setBounds(150, 250, 80, 30);
+        registrationWindow.exitButton.setBounds(80, 300, 80, 30);
+        registrationWindow.backButton.setBounds(180, 300, 80, 30);
+
+        thirdWindow.add(checkWindow.searchButton);
+        thirdWindow.add(registrationWindow.exitButton);
+        thirdWindow.add(registrationWindow.backButton);
+
+    registrationWindow.backButton.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            thirdWindow.setVisible(false);
+            LaptopManagement.openRegistrationFristWindow();
+        }
         });
 
-        thirdWindow.setVisible(true);
+    registrationWindow.exitButton.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.exit(0);
+        }
+    });
 
-      }
+    thirdWindow.setVisible(true);
+
+    }
 
    }
