@@ -41,13 +41,21 @@ import java.awt.event.ActionListener;
         thirdWindow.add(registrationWindow.exitButton);
         thirdWindow.add(registrationWindow.backButton);
 
-     registerionwindow.checkButton.addActionListener(new ActionListner(){
+     registerionWindow.checkButton.addActionListener(new ActionListner(){
           @Override
         public void actionPerformed(ActionEvent e) {
            thirdWindow.setVisible(false);
-           LaptopManagement.openRefistrationFirstWindow();
+           LaptopManagement.openRegistrationFristWindow();
         }
      });
+
+    registerionWindow.formatButton.addActionListener(new ActionListener(){
+       @Override
+       public void actionPerformed(ActionEvent e){
+          thirdWindow.setVisible(false);
+          LaptopManagement.openRegistationFristWindow();
+       }
+    });
 
     registrationWindow.backButton.addActionListener(new ActionListener() {
         @Override
