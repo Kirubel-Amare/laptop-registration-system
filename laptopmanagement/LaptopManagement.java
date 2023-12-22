@@ -1,8 +1,7 @@
 package edu.haramaya.laptopmanagement;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 public class LaptopManagement {
 
@@ -46,28 +45,17 @@ public class LaptopManagement {
             firstFrame.add(checkButton);
             firstFrame.add(exitButton);
 
-            registerButton.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                   RegistrationWindow.openRegistrationWindow();
-                    firstFrame.dispose();
-                }
+            registerButton.addActionListener(e -> {
+               RegistrationWindow.openRegistrationWindow();
+                firstFrame.dispose();
             });
 
-            checkButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    CheckWindow.openRegistrationCheckWindow();
-                    firstFrame.dispose();
-                }
+            checkButton.addActionListener(e -> {
+                CheckWindow.openRegistrationCheckWindow();
+                firstFrame.dispose();
             });
 
-            exitButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-
-                    System.exit(0);
-                }
-            });
+            exitButton.addActionListener(e -> System.exit(0));
 
             firstFrame.setVisible(true);
         }

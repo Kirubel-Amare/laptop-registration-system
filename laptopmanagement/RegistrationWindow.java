@@ -5,7 +5,10 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.sql.*;
+import java.util.Scanner;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 public class RegistrationWindow{
 
         public static void openRegistrationWindow() {
@@ -147,99 +150,152 @@ public class RegistrationWindow{
             registerButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                RegistrationWindow.openRegistrationWindow();
+                    String url = "jdbc:sqlite:student.db";
 
-                try {
-                    // perform id_number field validation
-                    String idno = idField.getText();
-                    String id_matches = "[0-9/]{7}";
+                    String createTableSql = "CREATE TABLE IF NOT EXISTS student (" +
+                            "Pc_serial INTEGER PRIMARY KEY," +
+                            "first_name VARCHAR(50) NOT NULL," +
+                            "last_name VARCHAR(50) NOT NULL," +
+                            "student_id VARCHAR(10) UNIQUE NOT NULL," +
+                            "Laptop VARCHAR(50) NOT NULL," +
+                            "Department VARCHAR(50) NOT NULL," +
+                            "Contact INTEGER NOT NULL," +
+                            "age INTEGER NOT NULL," +
+                            "Gender CHAR(1) NOT NULL" +
+                            ");";
 
-                    if(!(idno.matches(id_matches))){
-                        idField.setText("");
-                        idField.setForeground(Color.RED);
-                        idField.setText("invalid id_number");  
-                    }
+                    try (Connection conn = DriverManager.getConnection(url);
+                        Statement stmt = conn.createStatement()){
 
-                    // perform name field validation
-                    String inputName = nameField.getText();
-                    String name_matches = "[a-zA-Z]+([ -][a-zA-Z]+)*";
+                stmt.executeUpdate(createTableSql);
 
-                    if (!(inputName.matches(name_matches))) {
-                        idField.setText("");
-                        nameField.setForeground(Color.RED);
-                        nameField.setText("invalid name");   
-                    }
-                    
-                    // perform department field validation
-                    String departmentInput = departmentFiled.getText();
-                    String departmen_matches  = "[A-Za-z ]+";
 
-                    if (!(departmentInput.matches(departmen_matches))) {
-                        departmentFiled.setText("");
-                        departmentFiled.setForeground(Color.RED);
-                        departmentFiled.setText("invalid department name");   
-                    }
+                            Scanner scanner = new Scanner(System.in);
+                            System.out.println("Enter the number of students to register: ");
+                            int numStudents = scanner.nextInt();
+                            for (int i = 0; i < numStudents; i++) {
 
-                    //perform pc serial Number field validation
-                    String pcSerialNumber =serialFiled.getText();
-                    String pcSerialNumber_matches = "[a-zA-Z0-9]{6,12}";
+//                        System.out.println("student :  " + (++i) + "#");
+                                System.out.println("Enter student ID: ");
+                                String studentId = scanner.next();
 
-                    if (!(pcSerialNumber.matches(pcSerialNumber_matches))) {
-                            serialFiled.setText("");
-                            serialFiled.setForeground(Color.RED);
-                            serialFiled.setText("invalid pc-serailNumber");                  
-                    }
+                                System.out.println("Enter first name: ");
+                                String firstName = scanner.next();
+                                System.out.println("Enter last name: ");
+                                String lastName = scanner.next();
+                                System.out.println("Enter Department: ");
+                                String department = scanner.next();
+                                System.out.println("Enter Gender (M/F): ");
+                                char gender = scanner.next().charAt(0);
+                                System.out.println("Enter Laptop: ");
+                                String laptop = scanner.next();
+                                System.out.println("Enter Pc_serial: ");
+                                int pcSerial = scanner.nextInt();
+                                System.out.println("Enter Contact: ");
+                                int contact = scanner.nextInt();
+                                System.out.println("Enter age: ");
+                                int age = scanner.nextInt();
 
-                      // perform contact Number field validation
-                    String contactNumber = contactField.getText();
-                    String contact_matches = "^09[0-9]{8}";
+                                String insertSql = "INSERT INTO student (Pc_serial, first_name, last_name, Department, Laptop, student_id, Contact, age, Gender) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                                PreparedStatement pstmt = conn.prepareStatement(insertSql);
+                                pstmt.setInt(1, pcSerial);
+                                pstmt.setString(2, firstName);
+                                pstmt.setString(3, lastName);
+                                pstmt.setString(4, department);
+                                pstmt.setString(5, laptop);
+                                pstmt.setString(6, studentId);
+                                pstmt.setInt(7, contact);
+                                pstmt.setInt(8, age);
+                                pstmt.setString(9, String.valueOf(gender));
 
-                    if (!(contactNumber.matches(contact_matches))) {
-                            contactField.setText("");
-                            contactField.setForeground(Color.RED);
-                            contactField.setText("invalid contact-number"); 
-                    }
+                                pstmt.executeUpdate();
+                            }
 
-             // The code block is checking if any of the input fields (name, department, pc serial number, or
-            // contact number) do not match their respective regular expression patterns. If any of the fields do
-            // not match the pattern, it clears all the input fields (id, name, department, pc serial number, and
-            // contact number).
+                            System.out.println("New student records added succefully.");
+                            }catch (SQLException ex){
+                            System.err.format("An error occurred: %s", ex.getMessage());
+                        }
+                     }
+                });
+            updateButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String url = "jdbc:sqlite:student.db";
+                    try (Connection conn = DriverManager.getConnection(url);
+                         Statement stmt = conn.createStatement();
+                         Scanner scanner = new Scanner(System.in)) {
 
-                if (!(inputName.matches(name_matches)) || (!(inputName.matches(name_matches))) 
-                || !(departmentInput.matches(departmen_matches)) || !(pcSerialNumber.matches(pcSerialNumber_matches))
-                ||!(contactNumber.matches(contact_matches)) ) {
+                         System.out.print("Enter Pc_serial: ");
+                         int pcSerial = scanner.nextInt();
 
-                    idField.setText("");
-                    nameField.setText("");
-                    departmentFiled.setText("");
-                    serialFiled.setText("");
-                    contactField.setText("");
-                    
+
+                         System.out.print("Enter first_name: ");
+                         String firstName = scanner.next();
+
+                         System.out.print("Enter last_name: ");
+                         String lastName = scanner.next();
+
+                         System.out.print("Enter student_id: ");
+                         String studentId = scanner.next();
+
+                         System.out.print("Enter Laptop: ");
+                         String laptop = scanner.next();
+
+                         System.out.print("Enter Department: ");
+                         String department = scanner.next();
+
+                         System.out.print("Enter Contact: ");
+                         int contact = scanner.nextInt();
+
+                         System.out.print("Enter age: ");
+                         int age = scanner.nextInt();
+
+                         System.out.print("Enter Gender: ");
+                         char gender = scanner.next().charAt(0);
+
+                         String updateSql = "UPDATE student SET Pc_serial=?, first_name=?, last_name=?, student_id=?, Laptop=?, Department=?, Contact=?, age=?, Gender=? WHERE Pc_serial=?";
+                         PreparedStatement preparedStatement = conn.prepareStatement(updateSql);
+                         preparedStatement.setInt(1, pcSerial);
+                         preparedStatement.setString(2, firstName);
+                         preparedStatement.setString(3, lastName);
+                         preparedStatement.setString(4, studentId);
+                         preparedStatement.setString(5, laptop);
+                         preparedStatement.setString(6, department);
+                         preparedStatement.setInt(7, contact);
+                         preparedStatement.setInt(8, age);
+                         preparedStatement.setString(9, String.valueOf(gender));
+                         preparedStatement.setInt(10, pcSerial);
+                         preparedStatement.executeUpdate();
+
+                         System.out.println("Student record updated successfully.");
+                } catch (SQLException s) {
+                    System.err.format("An error occurred: %s", s.getMessage());
                 }
-                    
-                } catch (Exception error) {
-                    error.getMessage();
-                }
-                   
-                String id = idField.getText();
-                String name = nameField.getText();
-                String department=departmentFiled.getText();
-                String gender = male.isSelected() ? "Male" : "Female";
-                String laptop=window.isSelected()? "window":"linux";
-                String serial=serialFiled.getText();
-                String contact = contactField.getText();
+            }
+        });
 
-                // Add the data to the table model
-                DefaultTableModel model = (DefaultTableModel) table.getModel();
-                model.addRow(new Object[]{id, name,department, gender,laptop,serial, contact});
-
-                // Clear the input fields
-                idField.setText("");
-                nameField.setText("");
-                departmentFiled.setText("");
-                serialFiled.setText("");
-                contactField.setText("");
+            deleteButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String url = "jdbc:sqlite:student.db";
+                    Scanner scanner = new Scanner(System.in);
+                    System.out.println("Enter the serial number of the Laptop to delete:");
+                    int Pc_serial = scanner.nextInt();
+                    try (Connection conn = DriverManager.getConnection(url);
+                         Statement stmt = conn.createStatement()) {
+                        int rowCount = stmt.executeUpdate("DELETE FROM student WHERE Pc_serial = " + Pc_serial);
+                        if (rowCount > 0) {
+                            System.out.println("Student deleted successfully.");
+                        } else {
+                            System.out.println("No student found with the given serial number.");
+                        }
+                    } catch (SQLException f) {
+                        System.out.println("An error occurred while deleting student data.");
+                        f.printStackTrace();
+                    }
                 }
-            });
+      });
 
             backButton.addActionListener(new ActionListener() {
                 @Override
