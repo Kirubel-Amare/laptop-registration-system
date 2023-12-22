@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 public class LaptopManagement {
 
+    // Buttons
     protected JButton registerButton = null;
     protected JButton exitButton = null;
     protected JButton checkButton = null;
