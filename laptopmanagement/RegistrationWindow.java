@@ -10,7 +10,7 @@ public class RegistrationWindow extends LaptopManagement{
 
     // creating buttuns
     protected JButton updateButton = null;
-    protected JButton deleteButton = null;
+    // protected JButton deleteButton = null;
     protected JButton backButton = null;
     protected ButtonGroup male_female_buttonGroup = null;
     protected ButtonGroup window_mac_buttongroup = null;
@@ -27,7 +27,7 @@ public class RegistrationWindow extends LaptopManagement{
         registerButton = new JButton("Register");
         exitButton = new JButton("Exit");
         updateButton = new JButton("Update");
-        deleteButton = new JButton("Delete");
+        // deleteButton = new JButton("Delete");
         backButton = new JButton("Back");
         male_female_buttonGroup = new ButtonGroup();
         window_mac_buttongroup = new ButtonGroup();
@@ -51,14 +51,14 @@ public class RegistrationWindow extends LaptopManagement{
         // Set the position and size of each button
         laptopManagement.registerButton.setBounds(10, 310, 130, 25);
         registration.updateButton.setBounds(150, 310, 130, 25);
-        registration.deleteButton.setBounds(10, 350, 130, 25);
+        // registration.deleteButton.setBounds(10, 350, 130, 25);
         laptopManagement.exitButton.setBounds(150, 350, 130, 25);
         registration.backButton.setBounds(10, 7, 50, 30);
 
         // Add the buttons to the frame
         secondFrame.add(laptopManagement.registerButton);
         secondFrame.add(registration.updateButton);
-        secondFrame.add(registration.deleteButton);
+        // secondFrame.add(registration.deleteButton);
         secondFrame.add(laptopManagement.exitButton);
         secondFrame.add(registration.backButton);
 
@@ -201,6 +201,14 @@ public class RegistrationWindow extends LaptopManagement{
                 registration.window_mac_buttongroup.clearSelection();
                 
         }});
+
+         registration.updateButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                secondFrame.setVisible(true);
+                LaptopManagement.openRegistrationFristWindow();
+            }
+        });
 
 
         registration.backButton.addActionListener(new ActionListener() {
