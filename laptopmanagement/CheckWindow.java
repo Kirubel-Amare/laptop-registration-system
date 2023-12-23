@@ -33,11 +33,15 @@ import java.awt.event.ActionListener;
         serialField.setBounds(50, 250, 100, 30);
         thirdWindow.add(serialField);
 
-        checkWindow.searchButton.setBounds(150, 250, 80, 30);
+        checkWindow.searchButton.setBounds(200, 50, 100, 30);
+        registrationWindow.deleteButton.setBounds(200, 100, 100, 30);
+        registrationWindow.formatButton.setBounds(200, 150, 100, 30);
         registrationWindow.exitButton.setBounds(80, 300, 80, 30);
         registrationWindow.backButton.setBounds(180, 300, 80, 30);
 
         thirdWindow.add(checkWindow.searchButton);
+        thirdWindow.add(deleteButton);
+        thirdWindow.add(formatButton);
         thirdWindow.add(registrationWindow.exitButton);
         thirdWindow.add(registrationWindow.backButton);
 
@@ -47,6 +51,14 @@ import java.awt.event.ActionListener;
            thirdWindow.setVisible(false);
            LaptopManagement.openRegistrationFristWindow();
         }
+     });
+
+     registerionWindow.deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               thirdWindow.setVisible(false);
+               LaptopManagement.openRegisterationFirstWindow();
+            }
      });
 
     registerionWindow.formatButton.addActionListener(new ActionListener(){
